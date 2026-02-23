@@ -1,23 +1,21 @@
-import { Wrench, Clock, RefreshCcw } from "lucide-react";
-
 const services = [
   {
-    icon: Wrench,
+    num: "01",
     title: "Střední opravy",
-    desc: "Opravy kluzných ploch, nástrojových hlav a vřeten. Přetěsnění hydrauliky a výměna pohonů. Mechanický i elektrický servis.",
-    items: ["Kluzné plochy", "Nástrojové hlavy", "Vřetena", "Hydraulika", "Pohony"],
+    desc: "Opravy kluzných ploch, nástrojových hlav a vřeten. Přetěsnění hydrauliky, výměna pohonů. Mechanický i elektrický servis na místě.",
+    tags: ["Kluzné plochy", "Nástrojové hlavy", "Vřetena", "Hydraulika", "Pohony"],
   },
   {
-    icon: Clock,
+    num: "02",
     title: "Servis do 24 hodin",
-    desc: "Rychlý výjezd k zákazníkovi nebo oprava v naší provozovně ve Vyšeticích. Náhradní díly pro SPT 16/32 skladem.",
-    items: ["Výjezd k zákazníkovi", "Oprava v provozovně", "Díly skladem", "Siemens & Fanuc"],
+    desc: "Výjezd k zákazníkovi nebo oprava v provozovně ve Vyšeticích. Náhradní díly SPT 16/32 skladem pro okamžitou opravu.",
+    tags: ["Výjezd k zákazníkovi", "Provozovna Vyšetice", "Díly skladem", "Siemens · Fanuc"],
   },
   {
-    icon: RefreshCcw,
+    num: "03",
     title: "Generální opravy",
-    desc: "Kompletní mechanické a elektrické renovace obráběcích strojů. Modernizace řídících systémů Siemens 802D / 840Di a Fanuc 0i-TC.",
-    items: ["Kompletní renovace", "Modernizace Siemens", "Modernizace Fanuc", "Digitální odměřování"],
+    desc: "Kompletní mechanická a elektrická renovace. Modernizace řídících systémů Siemens 802D / 840Di a Fanuc 0i-TC včetně digitálního odměřování.",
+    tags: ["Kompletní renovace", "Siemens 802D / 840Di", "Fanuc 0i-TC", "Digitální odměřování"],
   },
 ];
 
@@ -26,50 +24,38 @@ export function Services() {
     <section id="sluzby" className="py-24 px-6 bg-bg2">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-16">
-          <p className="label-sm mb-3">Naše služby</p>
-          <h2 className="text-4xl sm:text-5xl font-black text-fg tracking-tight leading-tight">
-            Co pro vás uděláme
-          </h2>
+        <div className="flex items-baseline justify-between mb-2">
+          <span className="font-mono text-[9px] text-muted tracking-[0.2em] uppercase">
+            DASK.SERVICES
+          </span>
         </div>
+        <div className="border-t border-blue/40 mb-12" />
+        <h2 className="text-4xl sm:text-5xl font-black text-fg tracking-tight mb-16">
+          Co pro vás uděláme
+        </h2>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((s) => {
-            const Icon = s.icon;
-            return (
-              <div
-                key={s.title}
-                className="group relative bg-card border border-border rounded-2xl p-8 hover:border-accent transition-all duration-300 overflow-hidden"
-              >
-                {/* Accent glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{ background: "radial-gradient(ellipse at top left, rgba(245,158,11,0.06) 0%, transparent 60%)" }}
-                />
-
-                <div className="relative">
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                    <Icon size={20} className="text-accent" />
-                  </div>
-
-                  {/* Title & desc */}
-                  <h3 className="text-xl font-bold text-fg mb-3">{s.title}</h3>
-                  <p className="text-fg2 text-sm leading-relaxed mb-6">{s.desc}</p>
-
-                  {/* Feature list */}
-                  <ul className="space-y-2">
-                    {s.items.map((item) => (
-                      <li key={item} className="flex items-center gap-2.5 text-sm text-muted">
-                        <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        {/* Numbered list */}
+        <div className="space-y-0">
+          {services.map((s, i) => (
+            <div key={s.num}
+              className={`group grid md:grid-cols-[80px_1fr_auto] gap-6 md:gap-10 py-10 border-t border-border hover:border-blue/30 transition-colors ${i === services.length - 1 ? "border-b" : ""}`}>
+              {/* Number */}
+              <div className="font-mono text-4xl font-black text-border group-hover:text-blue/30 transition-colors leading-none pt-1 select-none">
+                {s.num}
               </div>
-            );
-          })}
+              {/* Content */}
+              <div>
+                <h3 className="text-xl font-bold text-fg mb-3">{s.title}</h3>
+                <p className="text-fg2 text-sm leading-relaxed max-w-xl">{s.desc}</p>
+              </div>
+              {/* Tags */}
+              <div className="flex flex-wrap md:flex-col gap-2 items-start md:items-end md:justify-start pt-1">
+                {s.tags.map((tag) => (
+                  <span key={tag} className="chip whitespace-nowrap">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

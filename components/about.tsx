@@ -1,79 +1,77 @@
-import { Award, MapPin, Phone } from "lucide-react";
-
 export function About() {
   return (
     <section id="o-nas" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left – text */}
+        <div className="flex items-baseline justify-between mb-2">
+          <span className="font-mono text-[9px] text-muted tracking-[0.2em] uppercase">
+            DASK.ABOUT
+          </span>
+        </div>
+        <div className="border-t border-blue/40 mb-12" />
+
+        <div className="grid lg:grid-cols-[1fr_360px] gap-16">
+          {/* Left – main text */}
           <div>
-            <p className="label-sm mb-3">O firmě</p>
-            <h2 className="text-4xl sm:text-5xl font-black text-fg tracking-tight leading-tight mb-6">
-              25 let zkušeností v oboru
+            <h2 className="text-4xl sm:text-5xl font-black text-fg tracking-tight leading-tight mb-8">
+              25 let zkušeností<br />v&nbsp;oboru
             </h2>
-            <p className="text-fg2 leading-relaxed mb-4">
-              Firma DASK vznikla v&nbsp;roce 1999 a od té doby se věnuje
-              poradenskému a servisnímu zázemí pro obráběcí stroje. Naším
-              cílem jsou co nejrychlejší a nejefektivnější opravy – přímo
-              u&nbsp;zákazníka nebo v naší provozovně ve Vyšeticích.
-            </p>
-            <p className="text-fg2 leading-relaxed mb-8">
-              Od roku 2010 zajišťujeme jako certifikované servisní středisko
-              instalace, záruční a pozáruční servis a dodávky náhradních dílů
-              LNS pro Českou a Slovenskou republiku.
-            </p>
+            <div className="space-y-4 text-fg2 leading-relaxed mb-10 max-w-xl">
+              <p>
+                Firma DASK vznikla v&nbsp;roce 1999 a od té doby se věnuje poradenskému
+                a servisnímu zázemí pro obráběcí stroje. Naším cílem jsou co
+                nejrychlejší a nejefektivnější opravy – přímo u zákazníka nebo
+                v&nbsp;provozovně ve Vyšeticích.
+              </p>
+              <p>
+                Od roku 2010 jsme certifikovaným servisním střediskem LNS pro
+                Českou a Slovenskou republiku. Zajišťujeme instalace, záruční
+                i&nbsp;pozáruční servis a dodávky originálních náhradních dílů.
+              </p>
+            </div>
 
             {/* Quote */}
-            <blockquote className="border-l-2 border-accent pl-5 py-1">
-              <p className="text-fg italic leading-relaxed mb-2">
-                „Nové automatizační prvky jako digitální odměřování
-                aplikujeme i na starší stroje – prodloužíme jejich životnost
-                a zvýšíme přesnost."
+            <div className="border-l-2 border-blue pl-5">
+              <p className="text-fg italic leading-relaxed mb-2 text-sm">
+                „Nové automatizační prvky jako digitální odměřování aplikujeme
+                i na starší stroje – prodloužíme jejich životnost a zvýšíme
+                přesnost."
               </p>
-              <cite className="text-sm text-muted not-italic font-semibold">
-                Petr Tupý — servisní technik DASK
-              </cite>
-            </blockquote>
+              <span className="font-mono text-[10px] text-muted tracking-[0.12em] uppercase">
+                Petr Tupý — servisní technik
+              </span>
+            </div>
           </div>
 
-          {/* Right – info cards */}
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              {
-                icon: Award,
-                title: "Certifikát LNS",
-                desc: "Certifikované servisní středisko LNS pro ČR a SR od roku 2010.",
-              },
-              {
-                icon: MapPin,
-                title: "Provozovna",
-                desc: "Opravujeme u zákazníka nebo ve vlastní provozovně ve Vyšeticích.",
-              },
-              {
-                icon: Phone,
-                title: "Dostupnost 24/7",
-                desc: "Výjezd k zákazníkovi do 24 hodin. Náhradní díly skladem.",
-              },
-              {
-                icon: Award,
-                title: "Siemens & Fanuc",
-                desc: "Školení a servis Siemens 802D, 840Di a Fanuc 0i-TC.",
-              },
-            ].map((card) => {
-              const Icon = card.icon;
-              return (
-                <div
-                  key={card.title}
-                  className="bg-card border border-border rounded-xl p-6 hover:border-accent/40 transition-colors"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                    <Icon size={18} className="text-accent" />
-                  </div>
-                  <h3 className="font-bold text-fg mb-1.5 text-sm">{card.title}</h3>
-                  <p className="text-muted text-xs leading-relaxed">{card.desc}</p>
-                </div>
-              );
-            })}
+          {/* Right – data table */}
+          <div className="border border-border bg-card">
+            <div className="border-b border-border px-5 py-3">
+              <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-muted">
+                DASK.PROFILE
+              </span>
+            </div>
+            <table className="w-full">
+              <tbody>
+                {[
+                  ["Rok vzniku", "1999"],
+                  ["Sídlo", "Vyšetice, ČR"],
+                  ["Zaměření", "Obráběcí stroje"],
+                  ["Certifikace", "LNS (od 2010)"],
+                  ["Pokrytí", "ČR + SR"],
+                  ["Výjezd", "do 24 hodin"],
+                  ["Systémy", "Siemens, Fanuc"],
+                  ["Stroje", "SPT 16, SPT 32"],
+                ].map(([k, v], i, arr) => (
+                  <tr key={k} className={i < arr.length - 1 ? "border-b border-border" : ""}>
+                    <td className="px-5 py-3 font-mono text-[9px] text-muted tracking-[0.12em] uppercase">
+                      {k}
+                    </td>
+                    <td className="px-5 py-3 font-mono text-[11px] text-fg text-right">
+                      {v}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

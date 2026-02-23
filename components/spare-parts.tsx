@@ -1,85 +1,58 @@
-import { Package, ArrowRight } from "lucide-react";
-
 const parts = [
-  {
-    category: "Snímače a spínače",
-    items: [
-      { name: "IRC 120/1250 – inkrementální snímač", price: "5 800 Kč" },
-      { name: "Spínač s kladkou (koncový)", price: "298 Kč" },
-      { name: "Uhlíkový kartáč vřetene", price: "148 Kč" },
-    ],
-  },
-  {
-    category: "Monitory a zobrazovače",
-    items: [
-      { name: "Monitor HEIDENHAIN TNC 407–426", price: "14 500 Kč" },
-      { name: "LCD konverze pro TNC monitory", price: "11 200 Kč" },
-      { name: "VGA převodník pro CNC", price: "4 200 Kč" },
-    ],
-  },
-  {
-    category: "Siemens příslušenství",
-    items: [
-      { name: "Vřetenový motor (skladem)", price: "na dotaz" },
-      { name: "Klávesnice SIEMENS 802D", price: "na dotaz" },
-      { name: "Ruční kolečko SIEMENS", price: "na dotaz" },
-    ],
-  },
+  { id: "S-001", name: "IRC 120/1250 – inkrementální snímač", cat: "Snímače", price: "5 800 Kč", stock: "Skladem" },
+  { id: "S-002", name: "Spínač s kladkou (koncový)", cat: "Snímače", price: "298 Kč", stock: "Skladem" },
+  { id: "S-003", name: "Uhlíkový kartáč vřetene", cat: "Snímače", price: "148 Kč", stock: "Skladem" },
+  { id: "M-001", name: "Monitor HEIDENHAIN TNC 407–426", cat: "Monitory", price: "14 500 Kč", stock: "Skladem" },
+  { id: "M-002", name: "LCD konverze pro TNC monitory", cat: "Monitory", price: "11 200 Kč", stock: "Skladem" },
+  { id: "M-003", name: "VGA převodník pro CNC", cat: "Monitory", price: "4 200 Kč", stock: "Skladem" },
+  { id: "T-001", name: "Vřetenový motor", cat: "Siemens", price: "Na dotaz", stock: "Skladem" },
+  { id: "T-002", name: "Klávesnice SIEMENS 802D", cat: "Siemens", price: "Na dotaz", stock: "Skladem" },
+  { id: "T-003", name: "Ruční kolečko SIEMENS", cat: "Siemens", price: "Na dotaz", stock: "Skladem" },
 ];
 
 export function SpareParts() {
   return (
     <section id="nahradni-dily" className="py-24 px-6 bg-bg2">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
-          <div>
-            <p className="label-sm mb-3">Sklad</p>
-            <h2 className="text-4xl sm:text-5xl font-black text-fg tracking-tight leading-tight">
-              Náhradní díly
-            </h2>
-          </div>
-          <p className="text-fg2 max-w-xs text-sm leading-relaxed">
-            Díly pro SPT 16/32, HEIDENHAIN a Siemens skladem. Ceny bez DPH.
-            Pro objednávku nebo poptávku nás kontaktujte.
-          </p>
+        <div className="flex items-baseline justify-between mb-2">
+          <span className="font-mono text-[9px] text-muted tracking-[0.2em] uppercase">
+            DASK.INVENTORY
+          </span>
+          <span className="font-mono text-[9px] text-muted">Ceny bez DPH</span>
         </div>
+        <div className="border-t border-blue/40 mb-12" />
+        <h2 className="text-4xl sm:text-5xl font-black text-fg tracking-tight mb-16">
+          Náhradní díly
+        </h2>
 
-        {/* Parts grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {parts.map((cat) => (
-            <div key={cat.category} className="bg-card border border-border rounded-2xl overflow-hidden">
-              {/* Category header */}
-              <div className="flex items-center gap-3 px-6 py-4 border-b border-border bg-bg2">
-                <Package size={14} className="text-accent" />
-                <span className="text-xs font-bold uppercase tracking-widest text-muted">
-                  {cat.category}
-                </span>
-              </div>
-
-              {/* Items */}
-              <ul className="divide-y divide-border">
-                {cat.items.map((item) => (
-                  <li key={item.name} className="flex items-center justify-between px-6 py-4 gap-4">
-                    <span className="text-sm text-fg2 leading-snug">{item.name}</span>
-                    <span className="text-sm font-bold text-accent whitespace-nowrap flex-shrink-0">
-                      {item.price}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+        {/* Table */}
+        <div className="border border-border bg-card overflow-hidden mb-8">
+          {/* Header */}
+          <div className="grid grid-cols-[60px_1fr_80px_120px_80px] gap-4 px-5 py-3 border-b border-border bg-bg2">
+            {["ID", "Název dílu", "Kategorie", "Cena", "Dostupnost"].map((h) => (
+              <span key={h} className="font-mono text-[9px] text-muted tracking-[0.1em] uppercase">{h}</span>
+            ))}
+          </div>
+          {/* Rows */}
+          {parts.map((p, i) => (
+            <div key={p.id}
+              className={`grid grid-cols-[60px_1fr_80px_120px_80px] gap-4 px-5 py-3.5 items-center hover:bg-bg2 transition-colors ${i < parts.length - 1 ? "border-b border-border" : ""}`}>
+              <span className="font-mono text-[10px] text-blue tracking-[0.08em]">{p.id}</span>
+              <span className="text-sm text-fg leading-snug">{p.name}</span>
+              <span className="font-mono text-[10px] text-muted hidden sm:block">{p.cat}</span>
+              <span className="font-mono text-[11px] text-fg font-semibold">{p.price}</span>
+              <span className="font-mono text-[10px] text-cyan hidden sm:block">{p.stock}</span>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center">
-          <a
-            href="#kontakt"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-accent text-accent font-semibold text-sm hover:bg-accent hover:text-bg transition-all"
-          >
-            Poptat náhradní díl
-            <ArrowRight size={16} />
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-muted">
+            Nenašli jste hledaný díl? Kontaktujte nás.
+          </p>
+          <a href="#kontakt"
+            className="inline-flex items-center px-5 py-2.5 border border-blue text-blue font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-blue hover:text-white transition-colors">
+            Poptat díl →
           </a>
         </div>
       </div>

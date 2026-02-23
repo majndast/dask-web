@@ -1,54 +1,56 @@
 @import "tailwindcss";
 
-/* Class-based dark mode for next-themes */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ── Runtime color tokens ── */
+/* ── Runtime tokens ── */
 :root {
-  --bg: #F8F7F4;
-  --bg-2: #EEECEA;
-  --fg: #111111;
-  --fg-2: #444444;
-  --card: #FFFFFF;
-  --border: #E0DED9;
-  --accent: #C96B00;
-  --accent-light: #FFA733;
-  --muted: #888888;
-  --radius: 8px;
+  --bg:      #F2F4F8;
+  --bg2:     #E6EAF2;
+  --fg:      #0D1117;
+  --fg2:     #3D4657;
+  --card:    #FFFFFF;
+  --border:  #CDD4E8;
+  --blue:    #2563EB;
+  --blue-hi: #1D4ED8;
+  --cyan:    #0891B2;
+  --muted:   #7A88A8;
+  --tag-bg:  #DBEAFE;
+  --tag-fg:  #1D4ED8;
 }
 
 .dark {
-  --bg: #0C0C0A;
-  --bg-2: #141410;
-  --fg: #EDECE8;
-  --fg-2: #A8A49C;
-  --card: #161612;
-  --border: #262620;
-  --accent: #F59E0B;
-  --accent-light: #FCD34D;
-  --muted: #605E58;
-  --radius: 8px;
+  --bg:      #050A14;
+  --bg2:     #070D1C;
+  --fg:      #E2EAF8;
+  --fg2:     #7A8AAA;
+  --card:    #0A1020;
+  --border:  #182038;
+  --blue:    #3B82F6;
+  --blue-hi: #60A5FA;
+  --cyan:    #22D3EE;
+  --muted:   #3E4E6A;
+  --tag-bg:  rgba(59,130,246,0.12);
+  --tag-fg:  #93C5FD;
 }
 
-/* ── Map tokens → Tailwind utilities ── */
 @theme inline {
-  --color-bg: var(--bg);
-  --color-bg2: var(--bg-2);
-  --color-fg: var(--fg);
-  --color-fg2: var(--fg-2);
-  --color-card: var(--card);
-  --color-border: var(--border);
-  --color-accent: var(--accent);
-  --color-accent-light: var(--accent-light);
-  --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg:      var(--bg);
+  --color-bg2:     var(--bg2);
+  --color-fg:      var(--fg);
+  --color-fg2:     var(--fg2);
+  --color-card:    var(--card);
+  --color-border:  var(--border);
+  --color-blue:    var(--blue);
+  --color-blue-hi: var(--blue-hi);
+  --color-cyan:    var(--cyan);
+  --color-muted:   var(--muted);
+  --color-tag-bg:  var(--tag-bg);
+  --color-tag-fg:  var(--tag-fg);
+  --font-sans:     var(--font-geist-sans);
+  --font-mono:     var(--font-geist-mono);
 }
 
-/* ── Base ── */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background-color: var(--bg);
@@ -57,31 +59,33 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle grid texture in dark mode */
+/* Blueprint grid — dark mode */
 .dark body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
-  background-size: 80px 80px;
+    linear-gradient(rgba(59, 130, 246, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
   pointer-events: none;
 }
 
-/* ── Typography helpers ── */
-.label-sm {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+/* Mono chip */
+.chip {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
+  font-weight: 600;
+  color: var(--tag-fg);
+  background: var(--tag-bg);
+  padding: 0.2rem 0.6rem;
+  display: inline-block;
 }
 
-/* ── Focus ring ── */
 *:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--blue);
   outline-offset: 3px;
-  border-radius: var(--radius);
 }

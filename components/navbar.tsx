@@ -20,85 +20,56 @@ export function Navbar() {
 
   useEffect(() => {
     setMounted(true);
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-bg/90 backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-200 ${
+        scrolled ? "bg-bg/95 backdrop-blur-xl border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
+      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
         <a href="#" className="flex items-center gap-3 group">
-          <span className="text-xl font-black tracking-tight text-accent group-hover:text-accent-light transition-colors">
+          <span className="font-mono text-sm font-bold tracking-[0.22em] text-fg uppercase group-hover:text-blue transition-colors">
             DASK
           </span>
-          <span className="hidden sm:block text-[10px] font-semibold tracking-[0.2em] uppercase text-muted border-l border-border pl-3">
-            CNC Servis
+          <span className="hidden sm:block font-mono text-[9px] text-muted tracking-[0.18em] uppercase border-l border-border pl-3">
+            CNC&nbsp;·&nbsp;EST.&nbsp;1999
           </span>
         </a>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-fg2 hover:text-fg transition-colors font-medium"
-            >
+            <a key={l.href} href={l.href}
+              className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted hover:text-fg transition-colors">
               {l.label}
             </a>
           ))}
         </nav>
-
-        {/* Right controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {mounted && (
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-lg text-muted hover:text-fg hover:bg-bg2 transition-all"
-              aria-label="Přepnout téma"
-            >
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 text-muted hover:text-fg hover:bg-bg2 transition-all" aria-label="Přepnout téma">
+              {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
             </button>
           )}
-
-          {/* Kontakt CTA – desktop only */}
-          <a
-            href="#kontakt"
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-bg text-sm font-semibold hover:bg-accent-light transition-colors"
-          >
+          <a href="#kontakt"
+            className="hidden md:inline-flex items-center px-4 py-2 bg-blue text-white font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-blue-hi transition-colors">
             Kontakt
           </a>
-
-          {/* Hamburger – mobile */}
-          <button
-            className="md:hidden p-2 rounded-lg text-muted hover:text-fg hover:bg-bg2 transition-all"
-            onClick={() => setOpen(!open)}
-            aria-label="Menu"
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
+          <button className="md:hidden p-2 text-muted hover:text-fg transition-all" onClick={() => setOpen(!open)}>
+            {open ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
-
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-bg/95 backdrop-blur-xl border-b border-border">
-          <nav className="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-4">
+        <div className="md:hidden bg-bg border-b border-border">
+          <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-3">
             {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="text-base text-fg2 hover:text-fg transition-colors py-1 font-medium"
-              >
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)}
+                className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted hover:text-fg py-1 transition-colors">
                 {l.label}
               </a>
             ))}

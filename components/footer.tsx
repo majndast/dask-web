@@ -1,70 +1,37 @@
 export function Footer() {
   const year = new Date().getFullYear();
-
   return (
     <footer className="border-t border-border bg-bg2">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid sm:grid-cols-3 gap-10 mb-10">
-          {/* Brand */}
+      <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="grid sm:grid-cols-3 gap-10 mb-8">
           <div>
-            <span className="text-2xl font-black text-accent tracking-tight">DASK</span>
-            <p className="text-muted text-xs mt-2 leading-relaxed max-w-xs">
-              Servis a modernizace obráběcích strojů od roku 1999.
-              Certifikované servisní středisko LNS.
+            <span className="font-mono text-sm font-bold tracking-[0.22em] text-fg uppercase">DASK</span>
+            <p className="font-mono text-[10px] text-muted tracking-[0.1em] mt-2 leading-relaxed">
+              Servis obráběcích strojů od 1999.<br />Certifikát LNS · ČR + SR.
             </p>
           </div>
-
-          {/* Links */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted mb-4">
-              Navigace
-            </p>
-            <ul className="space-y-2.5">
-              {[
-                ["Služby", "#sluzby"],
-                ["O nás", "#o-nas"],
-                ["Reference", "#reference"],
-                ["Náhradní díly", "#nahradni-dily"],
-                ["Kontakt", "#kontakt"],
-              ].map(([label, href]) => (
-                <li key={href}>
-                  <a
-                    href={href}
-                    className="text-sm text-fg2 hover:text-accent transition-colors"
-                  >
-                    {label}
-                  </a>
+            <p className="font-mono text-[9px] text-muted tracking-[0.2em] uppercase mb-4">Navigace</p>
+            <ul className="space-y-2">
+              {[["Služby","#sluzby"],["O nás","#o-nas"],["Reference","#reference"],["Náhradní díly","#nahradni-dily"],["Kontakt","#kontakt"]].map(([l,h]) => (
+                <li key={h}>
+                  <a href={h} className="font-mono text-[11px] text-fg2 hover:text-blue transition-colors">{l}</a>
                 </li>
               ))}
             </ul>
           </div>
-
-          {/* Contact */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted mb-4">
-              Kontakt
-            </p>
-            <div className="space-y-2">
-              <a
-                href="tel:+420728541353"
-                className="block text-sm text-fg2 hover:text-accent transition-colors"
-              >
-                +420 728 541 353
-              </a>
-              <p className="text-sm text-muted">Petr Tupý</p>
-              <p className="text-sm text-muted">Vyšetice</p>
+            <p className="font-mono text-[9px] text-muted tracking-[0.2em] uppercase mb-4">Kontakt</p>
+            <div className="space-y-1.5">
+              <a href="tel:+420728541353" className="block font-mono text-[11px] text-fg2 hover:text-blue transition-colors">+420 728 541 353</a>
+              <p className="font-mono text-[11px] text-muted">Petr Tupý</p>
+              <p className="font-mono text-[11px] text-muted">Vyšetice, ČR</p>
             </div>
           </div>
         </div>
-
-        {/* Bottom */}
-        <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-muted">
-            © {year} DASK. Všechna práva vyhrazena.
-          </p>
-          <p className="text-xs text-muted">
-            Servis CNC obráběcích strojů · Vyšetice · ČR
-          </p>
+        <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="font-mono text-[10px] text-muted">© {year} DASK</p>
+          <p className="font-mono text-[10px] text-muted">CNC Servis · Vyšetice · ČR</p>
         </div>
       </div>
     </footer>
