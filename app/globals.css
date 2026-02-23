@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* Class-based dark mode for next-themes */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Runtime color tokens ── */
+:root {
+  --bg: #F8F7F4;
+  --bg-2: #EEECEA;
+  --fg: #111111;
+  --fg-2: #444444;
+  --card: #FFFFFF;
+  --border: #E0DED9;
+  --accent: #C96B00;
+  --accent-light: #FFA733;
+  --muted: #888888;
+  --radius: 8px;
+}
+
+.dark {
+  --bg: #0C0C0A;
+  --bg-2: #141410;
+  --fg: #EDECE8;
+  --fg-2: #A8A49C;
+  --card: #161612;
+  --border: #262620;
+  --accent: #F59E0B;
+  --accent-light: #FCD34D;
+  --muted: #605E58;
+  --radius: 8px;
+}
+
+/* ── Map tokens → Tailwind utilities ── */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg-2);
+  --color-fg: var(--fg);
+  --color-fg2: var(--fg-2);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle grid texture in dark mode */
+.dark body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+/* ── Typography helpers ── */
+.label-sm {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ── Focus ring ── */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
